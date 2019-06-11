@@ -93,6 +93,7 @@ public class AlgorithmController {
 		return order;
 	}
 	
+	//Calculate the move needed to move from current position to next ball
 	public static Move calculateMove(ArrayList<Node> graph, int fromIndex, int toIndex) {
 		Move move = new Move();
 		Node from = graph.get(fromIndex);

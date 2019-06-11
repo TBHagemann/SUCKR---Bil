@@ -1,6 +1,6 @@
 package Algorithm;
 
-public class Move {
+public class Move implements java.io.Serializable {
 	
 	double distance;
 	//The angle to turn. Positive number means counterclockwise move

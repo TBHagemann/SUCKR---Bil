@@ -2,18 +2,23 @@ package Socket;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+
+import Algorithm.Move;
 
 public class SocketClient {
 	private Socket clientSocket;
 	private PrintWriter out;
 	private BufferedReader in;
+	private ObjectOutputStream objectOutputStream;
 
 	public void startConnection(String ip, int port) {
 		try {
 			clientSocket = new Socket(ip, port);
 			out = new PrintWriter(clientSocket.getOutputStream(), true);
+			objectOutputStream = new ObjectOutputStream(clientSocket.getOutputStream());
 			in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 		} catch(Exception e) {
 
@@ -30,6 +35,16 @@ public class SocketClient {
 			return "o shit";
 		}
 	}
+	
+	public String sendObject(Move move) {
+		try {
+			objectOutputStream.writeObject(move);
+			String resp = in.readLine();
+			return resp;
+		} catch(Exception e) {
+			return "o shit";
+		}
+	}
 
 	public void stopConnection() {
 		try {
@@ -40,4 +55,5 @@ public class SocketClient {
 
 		}
 	}
+	
 }

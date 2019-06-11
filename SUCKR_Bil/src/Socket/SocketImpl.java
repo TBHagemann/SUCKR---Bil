@@ -2,6 +2,9 @@ package Socket;
 
 import java.util.Scanner;
 
+import Algorithm.Move;
+import Algorithm.Node;
+
 public class SocketImpl {
 	
 	public static void main(String[] args) {
@@ -14,6 +17,13 @@ public class SocketImpl {
 		}
 		
 		client.startConnection("127.0.0.1", 6666);
+		
+		Move move = new Move();
+		move.setAngle(20.0);
+		move.setDistance(40.0);
+		
+		System.out.println(client.sendObject(move));
+		/*
 		String input = "Test";
 		String output;
 		while(!(input.equals(".")) ) {
@@ -21,7 +31,8 @@ public class SocketImpl {
 			System.out.println(output);
 			input = in.nextLine();
 		}
-		client.sendMessage(input);
+		*/
+		//client.sendMessage(input);
 		client.stopConnection();
 		
 	}
