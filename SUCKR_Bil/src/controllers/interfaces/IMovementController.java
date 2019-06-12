@@ -3,6 +3,7 @@ package controllers.interfaces;
 public interface IMovementController {
 	
 	public void driveCar(int distance);
+	public void driveCarBackwards(int distance);
 	public void turnLeft(int angle);
 	public void turnRight(int angle);
 	public void frontCollectorOn();

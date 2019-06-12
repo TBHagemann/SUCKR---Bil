@@ -35,8 +35,8 @@ public class MovementController implements IMovementController{
 
 	public MovementController(){
 		
-		this.wheel1 = WheeledChassis.modelWheel(Motor.C, diameter).offset(-3);
-		this.wheel2 = WheeledChassis.modelWheel(Motor.B, diameter).offset(3);
+		this.wheel1 = WheeledChassis.modelWheel(Motor.C, diameter).offset(3);
+		this.wheel2 = WheeledChassis.modelWheel(Motor.B, diameter).offset(-3);
 		this.trunk = Motor.A;
 		this.collector = Motor.D;
 		chassis = new WheeledChassis(new Wheel[] {wheel1, wheel2}, WheeledChassis.TYPE_DIFFERENTIAL);
@@ -46,25 +46,39 @@ public class MovementController implements IMovementController{
 	
 	public void driveCar(int distance) {
 		
-		movePilot.travel(distance);
+		
+		double trueDistance = distance * 0.67;
+		
+		movePilot.travel(trueDistance);
 		movePilot.stop();
 		
 	}
 	
+	public void driveCarBackwards(int distance) {
+		driveCar(-distance);
+	}
+	
 	public void turnLeft(int angle) {
+		
+		double trueAngle = angle * 2;
+		
 		movePilot.setAngularSpeed(100);
-		movePilot.rotate(angle);
+		movePilot.rotate(trueAngle);
 		movePilot.stop();
 	}
 	
 	public void turnRight(int angle) {
+		
+		double trueAngle = angle * 2;
+		
 		movePilot.setAngularSpeed(100);
-		movePilot.rotate(-angle);
+		movePilot.rotate(-trueAngle);
 		movePilot.stop();
 	}
 	
 	
 	public void frontCollectorOn() {
+		collector.setSpeed(720);
 		collector.backward();
 	}
 	
