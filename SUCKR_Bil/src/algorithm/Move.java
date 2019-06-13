@@ -1,4 +1,4 @@
-package Algorithm;
+package algorithm;
 
 public class Move implements java.io.Serializable {
 	
@@ -7,6 +7,11 @@ public class Move implements java.io.Serializable {
 	double angle;
 	
 	public Move() {
+	}
+	
+	public Move(double distance, double angle) {
+		this.distance = distance;
+		this.angle = angle;
 	}
 
 	public double getDistance() {
