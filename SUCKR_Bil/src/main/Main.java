@@ -1,5 +1,7 @@
 package main;
 
+import Socket.SocketServer;
+import algorithm.Move;
 import controllers.ControllerRegistry;
 import controllers.interfaces.IMovementController;
 import lejos.hardware.Button;
@@ -10,6 +12,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		//connectionTest();
 		movementTest();
 		
 	}
@@ -19,12 +22,40 @@ public class Main {
 		
 		mc.frontCollectorOn();
 
-		mc.driveCar(100);
-		
-		mc.turnRight(180);
-		
-//		mc.driveCar(100);
+		//mc.driveCar(100);
+		mc.turnRight(360);
 		
 		mc.frontCollectorOff();
+	}
+	
+	public static void connectionTest() {
+		SocketServer server = new SocketServer();
+		server.start(6666);
+		
+		boolean driving = true;
+		Move nextMove;
+		IMovementController mc = ControllerRegistry.getMovementController();
+		
+		mc.frontCollectorOn();
+		
+		while(driving) {
+			nextMove = server.recieveMove();
+			
+			if(nextMove == null) {
+				break;
+			}
+			
+			mc.turnRight((int) nextMove.getAngle());
+			
+			mc.driveCar((int) nextMove.getDistance());
+			
+			server.respond("okiedokie");
+		}
+		
+		mc.frontCollectorOff();
+		
+		mc.openTrunk();
+		Delay.msDelay(4000);
+		mc.closeTrunk();
 	}
 }

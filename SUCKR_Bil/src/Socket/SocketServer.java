@@ -8,7 +8,8 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import Algorithm.Move;
+import algorithm.Move;
+import lejos.utility.Delay;
 
 public class SocketServer {
 	private ServerSocket serverSocket;
@@ -25,10 +26,8 @@ public class SocketServer {
 			in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			objectInputStream = new ObjectInputStream(clientSocket.getInputStream());
 
-			Move move = (Move) objectInputStream.readObject();
-			System.out.println(move.getAngle());
-			System.out.println(move.getDistance());
-			out.println("Recived");
+//			System.out.println(move.getAngle());
+//			System.out.println(move.getDistance());
 			/*
 			String inputLine;
 			while((inputLine = (String) objectInputStream.readObject()) != null) {
@@ -55,11 +54,24 @@ public class SocketServer {
 			e.printStackTrace();
 		}
 	}
-
-	public static void main(String[] args) {
-		SocketServer server = new SocketServer();
-		server.start(6666);
-		
+	
+	public void respond(String response) {
+		out.println(response);
 	}
 
+	public Move recieveMove() {
+		
+		try {
+			Move move = (Move) objectInputStream.readObject();
+			return move;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return null;
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			
+			return null;
+		}
+	}
 }
