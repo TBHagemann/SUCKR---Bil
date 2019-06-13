@@ -1,4 +1,4 @@
-package Socket;
+package controllers;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,14 +9,15 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import Algorithm.Move;
+import Socket.SocketServer;
 
-public class SocketServer {
+public class SocketController {
 	private ServerSocket serverSocket;
 	private Socket clientSocket;
 	private PrintWriter out;
 	private BufferedReader in;
 	private ObjectInputStream objectInputStream;
-
+	
 	public void start(int port) {
 		try {
 			serverSocket = new ServerSocket(port);
@@ -49,7 +50,6 @@ public class SocketServer {
 		try {
 			in.close();
 			out.close();
-			objectInputStream.close();
 			clientSocket.close();
 			serverSocket.close();
 		} catch(Exception e) {
