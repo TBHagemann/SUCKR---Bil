@@ -25,8 +25,7 @@ public class MovementController implements IMovementController{
 	
 	NXTRegulatedMotor trunk;
 	private NXTRegulatedMotor collector;	
-	private double diameter = 3;
-	private double width = 0.3; 
+	private double diameter = 5.6;
 	private MovePilot movePilot;
 	private Chassis chassis;
 	private Wheel wheel1, wheel2; 
@@ -35,8 +34,8 @@ public class MovementController implements IMovementController{
 
 	public MovementController(){
 		
-		this.wheel1 = WheeledChassis.modelWheel(Motor.C, diameter).offset(3);
-		this.wheel2 = WheeledChassis.modelWheel(Motor.B, diameter).offset(-3);
+		this.wheel1 = WheeledChassis.modelWheel(Motor.C, diameter).offset(15);
+		this.wheel2 = WheeledChassis.modelWheel(Motor.B, diameter).offset(-15);
 		this.trunk = Motor.A;
 		this.collector = Motor.D;
 		chassis = new WheeledChassis(new Wheel[] {wheel1, wheel2}, WheeledChassis.TYPE_DIFFERENTIAL);
@@ -47,31 +46,33 @@ public class MovementController implements IMovementController{
 	public void driveCar(int distance) {
 		
 		
-		double trueDistance = distance * 0.67;
+		//double trueDistance = distance * 0.33;
 		
-		movePilot.travel(trueDistance);
+		//movePilot.setLinearSpeed(10);
+		
+		movePilot.travel(-distance);
 		movePilot.stop();
 		
 	}
 	
 	public void driveCarBackwards(int distance) {
-		driveCar(-distance);
+		driveCar(distance);
 	}
 	
 	public void turnLeft(int angle) {
 		
-		double trueAngle = angle * 2;
+		double trueAngle = angle * 0.55;
 		
-		movePilot.setAngularSpeed(100);
-		movePilot.rotate(trueAngle);
+		movePilot.setAngularSpeed(50);
+		movePilot.rotate(angle);
 		movePilot.stop();
 	}
 	
 	public void turnRight(int angle) {
 		
-		double trueAngle = angle * 2;
+		double trueAngle = angle * 0.55;
 		
-		movePilot.setAngularSpeed(100);
+		movePilot.setAngularSpeed(50);
 		movePilot.rotate(-trueAngle);
 		movePilot.stop();
 	}
