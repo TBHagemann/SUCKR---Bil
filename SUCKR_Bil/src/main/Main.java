@@ -16,7 +16,7 @@ public class Main {
 		//socketController.start(6666);
 		
 		connectionTest();
-		movementTest();
+		//movementTest();
 		
 	}
 	
