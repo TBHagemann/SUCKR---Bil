@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import Algorithm.Move;
+import algorithm.Move;
 import Socket.SocketServer;
 
 public class SocketController {

@@ -16,7 +16,7 @@ public class Main {
 		//socketController.start(6666);
 		
 		connectionTest();
-		movementTest();
+		//movementTest();
 		
 	}
 	
@@ -26,7 +26,7 @@ public class Main {
 		mc.frontCollectorOn();
 
 		//mc.driveCar(100);
-		mc.turnRight(360);
+		mc.turnLeft(1080);
 		
 		mc.frontCollectorOff();
 	}
@@ -34,25 +34,37 @@ public class Main {
 	public static void connectionTest() {
 		SocketServer server = new SocketServer();
 		server.start(6666);
+		System.out.println("Connection");
 		
 		boolean driving = true;
 		Move nextMove;
 		IMovementController mc = ControllerRegistry.getMovementController();
 		
 		mc.frontCollectorOn();
+		Move lastRecievedMove = new Move();
 		
 		while(driving) {
 			nextMove = server.recieveMove();
 			
-			if(nextMove == null) {
-				break;
+			if(nextMove == null) { 
+				
+				continue;
 			}
 			
-			mc.turnRight((int) nextMove.getAngle());
+			//if(lastRecievedMove.equals(nextMove))
+			if(nextMove.getAngle() > 0) {
+				nextMove.setAngle(nextMove.getAngle() + 15);
+			} else {
+				nextMove.setAngle(nextMove.getAngle() - 15);
+			}
+			mc.turnLeft((int) nextMove.getAngle());
 			
-			mc.driveCar((int) nextMove.getDistance());
+			mc.driveCar((int) (nextMove.getDistance()));
+			System.out.println("Angle: " + nextMove.getAngle());
+			System.out.println("Distance: " + nextMove.getDistance());
 			
 			server.respond("okiedokie");
+			nextMove = null;
 		}
 		
 		mc.frontCollectorOff();
