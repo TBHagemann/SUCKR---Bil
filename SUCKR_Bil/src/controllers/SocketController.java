@@ -1,4 +1,3 @@
-
 package controllers;
 
 import java.io.BufferedReader;
@@ -9,8 +8,8 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import algorithm.Move;
 import Socket.SocketServer;
+import algorithm.Move;
 
 public class SocketController {
 	private ServerSocket serverSocket;
@@ -31,6 +30,7 @@ public class SocketController {
 			System.out.println(move.getAngle());
 			System.out.println(move.getDistance());
 			out.println("Recived");
+			
 			/*
 			String inputLine;
 			while((inputLine = (String) objectInputStream.readObject()) != null) {

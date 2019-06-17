@@ -14,13 +14,12 @@ public class Main {
 	public static void main(String[] args) {
 		//SocketController socketController = new SocketController();
 		//socketController.start(6666);
-
 		
 		connectionTest();
 		//movementTest();
 		
 	}
-	
+
 	public static void movementTest() {
 		IMovementController mc = ControllerRegistry.getMovementController();
 		
@@ -74,4 +73,5 @@ public class Main {
 		Delay.msDelay(4000);
 		mc.closeTrunk();
 	}
+
 }
