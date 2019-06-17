@@ -54,9 +54,9 @@ public class Main {
 			
 			//if(lastRecievedMove.equals(nextMove))
 			if(nextMove.getAngle() > 0) {
-				nextMove.setAngle(nextMove.getAngle() + 15);
+				nextMove.setAngle(nextMove.getAngle() + 10);
 			} else {
-				nextMove.setAngle(nextMove.getAngle() - 15);
+				nextMove.setAngle(nextMove.getAngle() - 10);
 			}
 			mc.turnLeft((int) nextMove.getAngle());
 			
