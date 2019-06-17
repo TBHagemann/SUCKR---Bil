@@ -59,6 +59,10 @@ public class Main {
 		
 		mc.openTrunk();
 		Delay.msDelay(4000);
-		mc.closeTrunk();
+
+		
+		connectionTest();
+		//movementTest();
+		
 	}
 }
