@@ -1,9 +1,9 @@
 package main;
 
-import controllers.SocketController;
 import Socket.SocketServer;
 import algorithm.Move;
 import controllers.ControllerRegistry;
+import controllers.impl.SocketController;
 import controllers.interfaces.IMovementController;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;

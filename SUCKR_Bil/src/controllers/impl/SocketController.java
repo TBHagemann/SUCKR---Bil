@@ -1,4 +1,4 @@
-package controllers;
+package controllers.impl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -57,11 +57,4 @@ public class SocketController {
 			e.printStackTrace();
 		}
 	}
-
-	public static void main(String[] args) {
-		SocketServer server = new SocketServer();
-		server.start(6666);
-		
-	}
-
 }
