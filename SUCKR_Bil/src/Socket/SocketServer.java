@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import algorithm.Move;
 import lejos.utility.Delay;
@@ -60,11 +61,11 @@ public class SocketServer {
 		out.println(response);
 	}
 
-	public Move recieveMove() {
+	public ArrayList<Move> recieveMoves() {
 		
 		try {
-			Move move = (Move) objectInputStream.readObject();
-			return move;
+			ArrayList<Move> moves = (ArrayList<Move>) objectInputStream.readObject();
+			return moves;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			return null;
