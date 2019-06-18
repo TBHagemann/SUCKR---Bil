@@ -16,7 +16,6 @@ import lejos.hardware.port.MotorPort;
 import lejos.robotics.chassis.Chassis;
 import lejos.robotics.chassis.Wheel;
 import lejos.robotics.chassis.WheeledChassis;
-import lejos.robotics.navigation.DifferentialPilot;
 import lejos.robotics.navigation.MovePilot;
 import lejos.utility.Delay;
 
@@ -55,35 +54,35 @@ public class MovementController implements IMovementController{
 		
 	}
 	
+	public void driveCarSlowly(int distance) {
+		movePilot.setLinearSpeed(10);
+		movePilot.travel(-distance);
+		movePilot.stop();
+	}
+	
 	public void driveCarBackwards(int distance) {
-		driveCar(distance);
+		driveCar(-distance);
+	}
+	
+	public void driveCarBackwardsSlowly(int distance) {
+		driveCarSlowly(-distance);
 	}
 	
 	public void turnLeft(int angle) {
 		
-		if(angle < 0) {
-			turnRight(Math.abs(angle));
-			return;
-		}
-		
-		double trueAngle = angle * 0.625;
+		double trueAngle = angle * 0.55;
 		
 		movePilot.setAngularSpeed(50);
-		movePilot.rotate(-trueAngle);
+		movePilot.rotate(angle);
 		movePilot.stop();
 	}
 	
 	public void turnRight(int angle) {
 		
-		if(angle < 0) {
-			turnLeft(Math.abs(angle));
-			return;
-		}
-		
-		double trueAngle = angle * 0.58;
+		double trueAngle = angle * 0.55;
 		
 		movePilot.setAngularSpeed(50);
-		movePilot.rotate(trueAngle);
+		movePilot.rotate(-trueAngle);
 		movePilot.stop();
 	}
 	

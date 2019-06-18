@@ -16,21 +16,25 @@ public class Main {
 	public static void main(String[] args) {
 		//SocketController socketController = new SocketController();
 		//socketController.start(6666);
-
-		connectionTest();
-		//movementTest();
-
+		
+		//connectionTest();
+		movementTest();
+		
 	}
 
 	public static void movementTest() {
 		IMovementController mc = ControllerRegistry.getMovementController();
 
 		mc.frontCollectorOn();
-
+		
 		//mc.driveCar(100);
-		mc.turnLeft(1080);
 
+		//mc.driveCarBackwards(100);
+		mc.driveCarSlowly(50);
+		mc.driveCarBackwardsSlowly(50);
+		
 		mc.frontCollectorOff();
+		
 	}
 
 	public static void connectionTest() {
@@ -49,7 +53,6 @@ public class Main {
 			nextMoves = server.recieveMoves();
 
 
-
 			for(Move nextMove : nextMoves) {
 				if(nextMove == null) { 
 
@@ -62,15 +65,22 @@ public class Main {
 					nextMove.setAngle(nextMove.getAngle() - 10);
 				}
 				mc.turnLeft((int) nextMove.getAngle());
-
-				mc.driveCar((int) (nextMove.getDistance()));
+				
+				
+				if(nextMove.isDriveSlowly()) {
+					mc.driveCarSlowly((int) (nextMove.getDistance()));
+				}
+				else {
+					mc.driveCar((int) (nextMove.getDistance()));
+				}
+				
 				System.out.println("Angle: " + nextMove.getAngle());
 				System.out.println("Distance: " + nextMove.getDistance());
-
 
 				nextMove = null;
 
 			}
+			
 			server.respond("okiedokie");
 		}
 
