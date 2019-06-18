@@ -17,8 +17,8 @@ public class Main {
 		//SocketController socketController = new SocketController();
 		//socketController.start(6666);
 		
-		//connectionTest();
-		movementTest();
+		connectionTest();
+		//movementTest();
 		
 	}
 
