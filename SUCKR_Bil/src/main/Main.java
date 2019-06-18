@@ -77,11 +77,12 @@ public class Main {
 				System.out.println("Angle: " + nextMove.getAngle());
 				System.out.println("Distance: " + nextMove.getDistance());
 
+				server.respond("okiedokie");
 				nextMove = null;
 
 			}
 			
-			server.respond("okiedokie");
+			
 		}
 
 		mc.frontCollectorOff();
