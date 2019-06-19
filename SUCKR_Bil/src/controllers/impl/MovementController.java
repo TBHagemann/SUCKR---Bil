@@ -75,7 +75,7 @@ public class MovementController implements IMovementController{
 			return;
 		}
 		
-		double trueAngle = angle * 0.625;
+		double trueAngle = angle * 0.575;
 		
 		movePilot.setAngularSpeed(50);
 		movePilot.rotate(-trueAngle);
@@ -89,7 +89,7 @@ public class MovementController implements IMovementController{
 			return;
 		}
 		
-		double trueAngle = angle * 0.58;
+		double trueAngle = angle * 0.575;
 		
 		movePilot.setAngularSpeed(50);
 		movePilot.rotate(trueAngle);

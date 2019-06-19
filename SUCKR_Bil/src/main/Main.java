@@ -17,15 +17,15 @@ public class Main {
 		//SocketController socketController = new SocketController();
 		//socketController.start(6666);
 		
-		connectionTest();
-//		movementTest();
+//		connectionTest();
+		movementTest();
 		
 	}
 
 	public static void movementTest() {
 		IMovementController mc = ControllerRegistry.getMovementController();
 
-		mc.turnRight(720);
+		mc.turnLeft(450);
 		
 	}
 
@@ -52,9 +52,9 @@ public class Main {
 				}
 				//if(lastRecievedMove.equals(nextMove))
 				if(nextMove.getAngle() > 0) {
-					nextMove.setAngle(nextMove.getAngle() + 10);
+					nextMove.setAngle(nextMove.getAngle());
 				} else {
-					nextMove.setAngle(nextMove.getAngle() - 10);
+					nextMove.setAngle(nextMove.getAngle());
 				}
 				mc.turnLeft((int) nextMove.getAngle());
 				
