@@ -70,19 +70,29 @@ public class MovementController implements IMovementController{
 	
 	public void turnLeft(int angle) {
 		
-		double trueAngle = angle * 0.55;
+		if(angle<0) {
+			turnRight(Math.abs(angle));
+			return;
+		}
+		
+		double trueAngle = angle * 0.625;
 		
 		movePilot.setAngularSpeed(50);
-		movePilot.rotate(angle);
+		movePilot.rotate(-trueAngle);
 		movePilot.stop();
 	}
 	
 	public void turnRight(int angle) {
 		
-		double trueAngle = angle * 0.55;
+		if(angle<0) {
+			turnLeft(Math.abs(angle));
+			return;
+		}
+		
+		double trueAngle = angle * 0.58;
 		
 		movePilot.setAngularSpeed(50);
-		movePilot.rotate(-trueAngle);
+		movePilot.rotate(trueAngle);
 		movePilot.stop();
 	}
 	

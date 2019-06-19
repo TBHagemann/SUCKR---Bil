@@ -18,22 +18,14 @@ public class Main {
 		//socketController.start(6666);
 		
 		connectionTest();
-		//movementTest();
+//		movementTest();
 		
 	}
 
 	public static void movementTest() {
 		IMovementController mc = ControllerRegistry.getMovementController();
 
-		mc.frontCollectorOn();
-		
-		//mc.driveCar(100);
-
-		//mc.driveCarBackwards(100);
-		mc.driveCarSlowly(50);
-		mc.driveCarBackwardsSlowly(50);
-		
-		mc.frontCollectorOff();
+		mc.turnRight(720);
 		
 	}
 
