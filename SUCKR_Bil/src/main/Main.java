@@ -17,15 +17,20 @@ public class Main {
 		//SocketController socketController = new SocketController();
 		//socketController.start(6666);
 		
-//		connectionTest();
-		movementTest();
+		connectionTest();
+		//movementTest();
 		
 	}
 
 	public static void movementTest() {
 		IMovementController mc = ControllerRegistry.getMovementController();
 
-		mc.turnLeft(450);
+		mc.driveCarSlowly(50);
+		mc.driveCarBackwardsSlowly(50);
+		
+		
+		mc.driveCar(50);
+		mc.driveCarBackwards(50);
 		
 	}
 
@@ -39,11 +44,15 @@ public class Main {
 		IMovementController mc = ControllerRegistry.getMovementController();
 
 		mc.frontCollectorOn();
-		Move lastRecievedMove = new Move();
+		ArrayList<Move> lastRecievedMove = new ArrayList<Move>();
 
 		while(driving) {
 			nextMoves = server.recieveMoves();
 
+			if(nextMoves.equals(lastRecievedMove)) {
+				continue;
+			}
+			lastRecievedMove = nextMoves;
 
 			for(Move nextMove : nextMoves) {
 				if(nextMove == null) { 
@@ -51,11 +60,13 @@ public class Main {
 					continue;
 				}
 				//if(lastRecievedMove.equals(nextMove))
+				
 				if(nextMove.getAngle() > 0) {
-					nextMove.setAngle(nextMove.getAngle());
+					nextMove.setAngle(nextMove.getAngle() + 10);
 				} else {
-					nextMove.setAngle(nextMove.getAngle());
+					nextMove.setAngle(nextMove.getAngle() - 10);
 				}
+			
 				mc.turnLeft((int) nextMove.getAngle());
 				
 				
@@ -69,10 +80,10 @@ public class Main {
 				System.out.println("Angle: " + nextMove.getAngle());
 				System.out.println("Distance: " + nextMove.getDistance());
 
-				server.respond("okiedokie");
+				
 				nextMove = null;
-
 			}
+			server.respond("okiedokie");
 			
 			
 		}
