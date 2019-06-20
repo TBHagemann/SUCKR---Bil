@@ -25,7 +25,10 @@ public class Main {
 	public static void movementTest() {
 		IMovementController mc = ControllerRegistry.getMovementController();
 
-		mc.turnRight(720);
+		mc.frontCollectorOn();
+		Delay.msDelay(2000);
+		mc.twerk();
+		mc.frontCollectorOff();
 		
 	}
 

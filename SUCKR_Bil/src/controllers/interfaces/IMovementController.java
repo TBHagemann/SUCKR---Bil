@@ -2,6 +2,7 @@ package controllers.interfaces;
 
 public interface IMovementController {
 	
+	public void initializeMovePilot(); 
 	public void driveCar(int distance);
 	public void driveCarSlowly(int distance);
 	public void driveCarBackwards(int distance);
@@ -15,6 +16,6 @@ public interface IMovementController {
 //	public void parallelPark();
 	public void playSound();
 	public boolean isFrontCollectorOn();
-//	public void twerk();
+	public void twerk();
 
 }
