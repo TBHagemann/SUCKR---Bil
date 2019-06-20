@@ -25,12 +25,10 @@ public class Main {
 	public static void movementTest() {
 		IMovementController mc = ControllerRegistry.getMovementController();
 
-		mc.driveCarSlowly(50);
-		mc.driveCarBackwardsSlowly(50);
-		
-		
-		mc.driveCar(50);
-		mc.driveCarBackwards(50);
+		mc.frontCollectorOn();
+		Delay.msDelay(2000);
+		mc.twerk();
+		mc.frontCollectorOff();
 		
 	}
 
