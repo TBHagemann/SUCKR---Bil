@@ -50,6 +50,7 @@ public class MovementController implements IMovementController{
 		//movePilot.setLinearSpeed(10);
 		
 		movePilot.travel(-distance);
+		System.out.println("speed: " + movePilot.getLinearSpeed());
 		movePilot.stop();
 		
 	}
@@ -57,6 +58,7 @@ public class MovementController implements IMovementController{
 	public void driveCarSlowly(int distance) {
 		movePilot.setLinearSpeed(10);
 		movePilot.travel(-distance);
+		movePilot.setLinearSpeed(30);
 		movePilot.stop();
 	}
 	
@@ -131,6 +133,10 @@ public class MovementController implements IMovementController{
 	
 	public void playSound() {
 		Sound.playSample(PKMON);
+	}
+	
+	public boolean isFrontCollectorOn() {
+		return collector.isMoving();
 	}
 	
 	/*

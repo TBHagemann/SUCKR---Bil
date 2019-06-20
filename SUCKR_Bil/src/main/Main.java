@@ -18,14 +18,14 @@ public class Main {
 		//socketController.start(6666);
 		
 		connectionTest();
-//		movementTest();
+		//movementTest();
 		
 	}
 
 	public static void movementTest() {
 		IMovementController mc = ControllerRegistry.getMovementController();
 
-		mc.turnLeft(450);
+		mc.turnRight(720);
 		
 	}
 
@@ -39,23 +39,33 @@ public class Main {
 		IMovementController mc = ControllerRegistry.getMovementController();
 
 		mc.frontCollectorOn();
-		Move lastRecievedMove = new Move();
+		ArrayList<Move> lastRecievedMove = new ArrayList<Move>();
 
 		while(driving) {
 			nextMoves = server.recieveMoves();
 
+			if(nextMoves.equals(lastRecievedMove)) {
+				continue;
+			}
+			lastRecievedMove = nextMoves;
 
 			for(Move nextMove : nextMoves) {
+				if(!mc.isFrontCollectorOn()) {
+					mc.frontCollectorOn();
+				}
+				
 				if(nextMove == null) { 
 
 					continue;
 				}
 				//if(lastRecievedMove.equals(nextMove))
+				
 				if(nextMove.getAngle() > 0) {
-					nextMove.setAngle(nextMove.getAngle());
+					nextMove.setAngle(nextMove.getAngle() + 10);
 				} else {
-					nextMove.setAngle(nextMove.getAngle());
+					nextMove.setAngle(nextMove.getAngle() - 10);
 				}
+			
 				mc.turnLeft((int) nextMove.getAngle());
 				
 				
@@ -69,14 +79,16 @@ public class Main {
 				System.out.println("Angle: " + nextMove.getAngle());
 				System.out.println("Distance: " + nextMove.getDistance());
 
-				server.respond("okiedokie");
+				
 				nextMove = null;
-
+				
 			}
+			server.respond("okiedokie");
 			
 			
 		}
 
+		System.out.println("FRONTCOLLECTOR OFF");
 		mc.frontCollectorOff();
 
 		mc.openTrunk();
