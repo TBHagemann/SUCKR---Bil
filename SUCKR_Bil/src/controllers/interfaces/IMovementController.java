@@ -16,6 +16,7 @@ public interface IMovementController {
 //	public void parallelPark();
 	public void playSound();
 	public boolean isFrontCollectorOn();
+	public void reverseCollector();
 	public void twerk();
 
 }

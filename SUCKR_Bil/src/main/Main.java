@@ -41,8 +41,12 @@ public class Main {
 		mc.frontCollectorOn();
 		ArrayList<Move> lastRecievedMove = new ArrayList<Move>();
 
+		int count = 0;
+		
 		while(driving) {
 			nextMoves = server.recieveMoves();
+			
+			count++;
 
 			if(nextMoves.equals(lastRecievedMove)) {
 				continue;
@@ -97,6 +101,11 @@ public class Main {
 
 				
 				nextMove = null;
+				
+				if(count == 2) {
+					mc.reverseCollector();
+					count = 0;
+				}
 				
 			}
 			server.respond("okiedokie");
