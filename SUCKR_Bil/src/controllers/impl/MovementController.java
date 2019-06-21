@@ -139,6 +139,16 @@ public class MovementController implements IMovementController{
 	public boolean isFrontCollectorOn() {
 		return collector.isMoving();
 	}
+	
+	public void reverseCollector() {
+		collector.stop();
+		collector.setSpeed(720);
+		collector.forward();
+		
+		Delay.msDelay(2000);
+		
+		collector.backward();
+	}
 
 
 	public void twerk() {
