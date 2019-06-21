@@ -73,6 +73,8 @@ public class Main {
 					if(nextMove.isDriveSlowly()) {
 						mc.driveCarSlowly((int)nextMove.getDistance());
 						mc.twerk();
+						server.respond("JATAKCHEF");
+						Delay.msDelay(500);
 					}
 					else {
 						mc.driveCar((int)nextMove.getDistance());
