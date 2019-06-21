@@ -17,18 +17,15 @@ public class Main {
 		//SocketController socketController = new SocketController();
 		//socketController.start(6666);
 		
-		connectionTest();
-		//movementTest();
+		//connectionTest();
+		movementTest();
 		
 	}
 
 	public static void movementTest() {
 		IMovementController mc = ControllerRegistry.getMovementController();
 
-		mc.frontCollectorOn();
-		Delay.msDelay(2000);
 		mc.twerk();
-		mc.frontCollectorOff();
 		
 	}
 
@@ -72,7 +69,17 @@ public class Main {
 				mc.turnLeft((int) nextMove.getAngle());
 				
 				
-				if(nextMove.isDriveSlowly()) {
+				if(nextMove.isTwerk()){
+					if(nextMove.isDriveSlowly()) {
+						mc.driveCarSlowly((int)nextMove.getDistance());
+						mc.twerk();
+					}
+					else {
+						mc.driveCar((int)nextMove.getDistance());
+						mc.twerk();
+					}
+				}
+				else if(nextMove.isDriveSlowly()) {
 					mc.driveCarSlowly((int) (nextMove.getDistance()));
 				}
 				else {

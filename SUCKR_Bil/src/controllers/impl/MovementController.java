@@ -161,7 +161,7 @@ public class MovementController implements IMovementController{
 		wheel2UR.stop();
 		
 		trunkUR.setPower(100);
-		collectorUR.setPower(100);
+		collectorUR.setPower(60);
 
 		for(int j = 0; j < 2; j++) {
 			trunkUR.backward();

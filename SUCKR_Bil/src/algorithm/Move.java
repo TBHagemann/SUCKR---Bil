@@ -6,6 +6,7 @@ public class Move implements java.io.Serializable {
 	//The angle to turn. Positive number means counterclockwise move
 	double angle;
 	boolean driveSlowly;
+	boolean twerk;
 	
 	public Move() {
 	}
@@ -14,12 +15,21 @@ public class Move implements java.io.Serializable {
 		this.distance = distance;
 		this.angle = angle;
 		this.driveSlowly = false;
+		this.twerk = false;
 	}
 	
 	public Move(double distance, double angle, boolean driveSlowly) {
 		this.distance = distance;
 		this.angle = angle;
 		this.driveSlowly = driveSlowly;
+		this.twerk = false;
+	}
+	
+	public Move(double distance, double angle, boolean driveSlowly, boolean twerk) {
+		this.distance = distance;
+		this.angle = angle;
+		this.driveSlowly = driveSlowly;
+		this.twerk = twerk;
 	}
 
 	public double getDistance() {
@@ -45,5 +55,15 @@ public class Move implements java.io.Serializable {
 	public void setDriveSlowly(boolean driveSlowly) {
 		this.driveSlowly = driveSlowly;
 	}
+
+	public boolean isTwerk() {
+		return twerk;
+	}
+
+	public void setTwerk(boolean twerk) {
+		this.twerk = twerk;
+	}
+	
+	
 	
 }
