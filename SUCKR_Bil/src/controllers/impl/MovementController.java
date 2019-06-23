@@ -49,7 +49,6 @@ public class MovementController implements IMovementController{
 
 		//double trueDistance = distance * 0.33;
 
-		//movePilot.setLinearSpeed(10);
 
 		movePilot.travel(-distance);
 		System.out.println("speed: " + movePilot.getLinearSpeed());
@@ -174,7 +173,7 @@ public class MovementController implements IMovementController{
 		collectorUR.setPower(60);
 		collectorUR.backward();
 
-		for(int j = 0; j < 2; j++) {
+		for(int j = 0; j < 3; j++) {
 			trunkUR.backward();
 			Delay.msDelay(4000);
 			
