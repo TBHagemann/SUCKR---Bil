@@ -49,7 +49,6 @@ public class MovementController implements IMovementController{
 
 		//double trueDistance = distance * 0.33;
 
-		//movePilot.setLinearSpeed(10);
 
 		movePilot.travel(-distance);
 		movePilot.stop();
@@ -138,6 +137,16 @@ public class MovementController implements IMovementController{
 	public boolean isFrontCollectorOn() {
 		return collector.isMoving();
 	}
+	
+	public void reverseCollector() {
+		collector.stop();
+		collector.setSpeed(720);
+		collector.forward();
+		
+		Delay.msDelay(2000);
+		
+		collector.backward();
+	}
 
 
 	public void twerk() {
@@ -161,8 +170,9 @@ public class MovementController implements IMovementController{
 		
 		trunkUR.setPower(100);
 		collectorUR.setPower(60);
+		collectorUR.backward();
 
-		for(int j = 0; j < 2; j++) {
+		for(int j = 0; j < 3; j++) {
 			trunkUR.backward();
 			Delay.msDelay(4000);
 			

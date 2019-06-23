@@ -17,8 +17,8 @@ public class Main {
 		//SocketController socketController = new SocketController();
 		//socketController.start(6666);
 		
-		//connectionTest();
-		movementTest();
+		connectionTest();
+		//movementTest();
 		
 	}
 
@@ -41,8 +41,12 @@ public class Main {
 		mc.frontCollectorOn();
 		ArrayList<Move> lastRecievedMove = new ArrayList<Move>();
 
+		int count = 0;
+		
 		while(driving) {
 			nextMoves = server.recieveMoves();
+			
+			count++;
 
 			if(nextMoves.equals(lastRecievedMove)) {
 				continue;
@@ -71,15 +75,19 @@ public class Main {
 				
 				if(nextMove.isTwerk()){
 					if(nextMove.isDriveSlowly()) {
+						System.out.println("IF");
 						mc.driveCarSlowly((int)nextMove.getDistance());
 						mc.twerk();
-						server.respond("JATAKCHEF");
-						Delay.msDelay(500);
+						
 					}
 					else {
+						System.out.println("ELSE");
 						mc.driveCar((int)nextMove.getDistance());
 						mc.twerk();
 					}
+					server.respond("JATAKCHEF");
+					Delay.msDelay(500);
+					System.exit(0);
 				}
 				else if(nextMove.isDriveSlowly()) {
 					mc.driveCarSlowly((int) (nextMove.getDistance()));
@@ -91,6 +99,11 @@ public class Main {
 
 				
 				nextMove = null;
+				
+				if(count == 2) {
+					mc.reverseCollector();
+					count = 0;
+				}
 				
 			}
 			server.respond("okiedokie");
