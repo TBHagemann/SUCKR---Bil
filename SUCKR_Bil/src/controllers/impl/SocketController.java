@@ -27,20 +27,8 @@ public class SocketController {
 			objectInputStream = new ObjectInputStream(clientSocket.getInputStream());
 
 			Move move = (Move) objectInputStream.readObject();
-			System.out.println(move.getAngle());
-			System.out.println(move.getDistance());
 			out.println("Recived");
-			
-			/*
-			String inputLine;
-			while((inputLine = (String) objectInputStream.readObject()) != null) {
-				if(".".equals(inputLine)) {
-					out.println("good bye");
-					break;
-				}
-				out.println(inputLine);
-			}
-			*/
+		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -88,8 +88,6 @@ public class Main {
 					mc.driveCar((int) (nextMove.getDistance()));
 				}
 				
-				System.out.println("Angle: " + nextMove.getAngle());
-				System.out.println("Distance: " + nextMove.getDistance());
 
 				
 				nextMove = null;
@@ -100,7 +98,6 @@ public class Main {
 			
 		}
 
-		System.out.println("FRONTCOLLECTOR OFF");
 		mc.frontCollectorOff();
 
 		mc.openTrunk();

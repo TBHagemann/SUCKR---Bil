@@ -52,7 +52,6 @@ public class MovementController implements IMovementController{
 		//movePilot.setLinearSpeed(10);
 
 		movePilot.travel(-distance);
-		System.out.println("speed: " + movePilot.getLinearSpeed());
 		movePilot.stop();
 
 	}

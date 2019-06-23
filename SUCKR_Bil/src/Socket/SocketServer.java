@@ -27,18 +27,6 @@ public class SocketServer {
 			in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			objectInputStream = new ObjectInputStream(clientSocket.getInputStream());
 
-//			System.out.println(move.getAngle());
-//			System.out.println(move.getDistance());
-			/*
-			String inputLine;
-			while((inputLine = (String) objectInputStream.readObject()) != null) {
-				if(".".equals(inputLine)) {
-					out.println("good bye");
-					break;
-				}
-				out.println(inputLine);
-			}
-			*/
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
